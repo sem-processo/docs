@@ -1866,6 +1866,62 @@
                   "type": "string",
                   "description": "Id do processo",
                   "example": "ee257371-08fc-4032-bb15-b30842a7c50f"
+                },
+                "informacoes_encerramento": {
+                  "type": "object",
+                  "description": "Informações do encerramento do processo",
+                  "properties": {
+                    "criado_em": {
+                      "type": "string",
+                      "description": "Data de criação do registro no banco de dados",
+                      "example": "2025-09-06T15:19:26.705Z"
+                    },
+                    "atualizado_em": {
+                      "type": "string",
+                      "description": "Data da última atualização no banco de dados",
+                      "example": "2025-09-12T15:19:26.705Z"
+                    },
+                    "completado_em": {
+                      "type": "string",
+                      "description": "Data de finalização do fluxo de encerramento",
+                      "example": "2025-09-12T15:19:26.705Z"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status do encerramento",
+                      "example": "Concluído"
+                    },
+                    "pendencias": {
+                      "type": "string",
+                      "description": "Pendências durante o encerramento do processo",
+                      "example": "Necessidade de documentos adicionais que comprovem o encerramento do processo"
+                    },
+                    "detalhamento_resultado": {
+                      "type": "string",
+                      "description": "Detalhes do encerramento do processo",
+                      "example": "Processo extinto sem resolução do mérito por inadmissibilidade do procedimento sumaríssimo."
+                    },
+                    "resultado_processo": {
+                      "type": "string",
+                      "description": "Resultado do processo",
+                      "example": "Extinto/Arquivado sem resolução de mérito"
+                    },
+                    "data_encerramento": {
+                      "type": "string",
+                      "description": "Data de encerramento do processo no tribunal",
+                      "example": "2025-09-04T15:19:26.705Z"
+                    },
+                    "id_processo": {
+                      "type": "string",
+                      "description": "Id do processo",
+                      "example": "12d18b20-6a66-4daa-aaf8-a8f97b0efffe"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Id do encerramento",
+                      "example": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+                    }
+                  }
                 }
               }
             }
@@ -2366,6 +2422,62 @@
             "type": "string",
             "description": "Id do processo",
             "example": "ee257371-08fc-4032-bb15-b30842a7c50f"
+          },
+          "informacoes_encerramento": {
+            "type": "object",
+            "description": "Informações do encerramento do processo",
+            "properties": {
+              "criado_em": {
+                "type": "string",
+                "description": "Data de criação do registro no banco de dados",
+                "example": "2025-09-06T15:19:26.705Z"
+              },
+              "atualizado_em": {
+                "type": "string",
+                "description": "Data da última atualização no banco de dados",
+                "example": "2025-09-12T15:19:26.705Z"
+              },
+              "completado_em": {
+                "type": "string",
+                "description": "Data de finalização do fluxo de encerramento",
+                "example": "2025-09-12T15:19:26.705Z"
+              },
+              "status": {
+                "type": "string",
+                "description": "Status do encerramento",
+                "example": "Concluído"
+              },
+              "pendencias": {
+                "type": "string",
+                "description": "Pendências durante o encerramento do processo",
+                "example": "Necessidade de documentos adicionais que comprovem o encerramento do processo"
+              },
+              "detalhamento_resultado": {
+                "type": "string",
+                "description": "Detalhes do encerramento do processo",
+                "example": "Processo extinto sem resolução do mérito por inadmissibilidade do procedimento sumaríssimo."
+              },
+              "resultado_processo": {
+                "type": "string",
+                "description": "Resultado do processo",
+                "example": "Extinto/Arquivado sem resolução de mérito"
+              },
+              "data_encerramento": {
+                "type": "string",
+                "description": "Data de encerramento do processo no tribunal",
+                "example": "2025-09-04T15:19:26.705Z"
+              },
+              "id_processo": {
+                "type": "string",
+                "description": "Id do processo",
+                "example": "12d18b20-6a66-4daa-aaf8-a8f97b0efffe"
+              },
+              "id": {
+                "type": "string",
+                "description": "Id do encerramento",
+                "example": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+              }
+            }
           }
         }
       },
