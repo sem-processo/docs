@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Lexxy API",
   "colors": {
-    "primary": "#009688",
-    "light": "#64feda",
-    "dark": "#009688"
+    "primary": "#b237f9",
+    "light": "#d388ff",
+    "dark": "#b237f9"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -26,6 +26,7 @@
               "pages/routes/teams/details",
               "pages/routes/process/get-all",
               "pages/routes/process/details",
+              "pages/routes/process/download-urls",
               "pages/routes/tasks/get-all",
               "pages/routes/tasks/details",
               "pages/routes/process-progress/get-all",
@@ -70,7 +71,8 @@
             "pages": [
               "api-reference/process/get-all",
               "api-reference/process/details",
-              "api-reference/process/by-number"
+              "api-reference/process/by-number",
+              "api-reference/process/download-urls"
             ]
           },
           {
