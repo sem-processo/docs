@@ -60,7 +60,7 @@ async function downloadAndZip(ids, outputZipPath = "arquivos.zip") {
     output.on("error", reject);
   });
 
-  console.log(`✅ ZIP gerado: ${outputZipPath} (${archive.pointer()} bytes)`);
+  console.log(`ZIP gerado: ${outputZipPath} (${archive.pointer()} bytes)`);
 }
 
 downloadAndZip([
@@ -105,7 +105,7 @@ def download_and_zip(ids, output_zip_path="arquivos.zip"):
                 for chunk in file_response.iter_content(chunk_size=8192):
                     zf.write(chunk)
 
-    print(f"✅ ZIP gerado: {output_zip_path}")
+    print(f"ZIP gerado: {output_zip_path}")
 
 download_and_zip([
     "6d882e08-92e5-4f53-8ea9-34d48db58d44",

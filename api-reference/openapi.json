@@ -5076,7 +5076,7 @@
           "nome_arquivo": {
             "type": "string",
             "description": "Nome original do arquivo",
-            "example": "ProcessovooMAD-ba7b643c.pdf"
+            "example": "file_name.pdf"
           },
           "tamanho_arquivo": {
             "type": "string",
