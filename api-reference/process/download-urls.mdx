@@ -1,0 +1,135 @@
+---
+title: "Download de anexos"
+openapi: "POST /process/download-urls"
+---
+
+## Download automático com ZIP
+
+Se você precisar baixar múltiplos arquivos de uma vez, o exemplo abaixo
+busca as URLs na API e compacta tudo em um `.zip` localmente —
+**os arquivos vão direto do S3 para o zip, sem passar pelo seu servidor.**
+
+<CodeGroup>
+
+```javascript Node.js
+import fetch from "node-fetch";
+import archiver from "archiver";
+import fs from "fs";
+
+const API_URL = "https://api.example.com.br/v1/api/process/download-urls";
+const API_KEY = "SUA_API_KEY";
+
+async function downloadAndZip(ids, outputZipPath = "arquivos.zip") {
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": API_KEY,
+    },
+    body: JSON.stringify({ ids }),
+  });
+
+  const { encontrados, nao_encontrados } = await response.json();
+
+  if (nao_encontrados.length > 0) {
+    console.warn("IDs não encontrados:", nao_encontrados);
+  }
+
+  const output = fs.createWriteStream(outputZipPath);
+  const archive = archiver("zip", { zlib: { level: 6 } });
+
+  archive.pipe(output);
+
+  await Promise.all(
+    encontrados.map(async ({ nome_arquivo, download }) => {
+      const fileResponse = await fetch(download.url);
+
+      if (!fileResponse.ok) {
+        console.error(`Falhou ao baixar: ${nome_arquivo}`);
+        return;
+      }
+
+      archive.append(fileResponse.body, { name: nome_arquivo });
+    })
+  );
+
+  await archive.finalize();
+
+  await new Promise((resolve, reject) => {
+    output.on("close", resolve);
+    output.on("error", reject);
+  });
+
+  console.log(`ZIP gerado: ${outputZipPath} (${archive.pointer()} bytes)`);
+}
+
+downloadAndZip([
+  "6d882e08-92e5-4f53-8ea9-34d48db58d44",
+  "00008399-b767-450a-ba8c-f7ea81088d09",
+], "./anexos-processo.zip");
+```
+
+```python Python
+import requests
+import zipfile
+
+API_URL = "https://api.example.com.br/v1/api/process/download-urls"
+API_KEY = "SUA_API_KEY"
+
+def download_and_zip(ids, output_zip_path="arquivos.zip"):
+    response = requests.post(
+        API_URL,
+        headers={"Content-Type": "application/json", "x-api-key": API_KEY},
+        json={"ids": ids},
+    )
+    data = response.json()
+
+    encontrados = data.get("encontrados", [])
+    nao_encontrados = data.get("nao_encontrados", [])
+
+    if nao_encontrados:
+        print(f"IDs não encontrados: {nao_encontrados}")
+
+    with zipfile.ZipFile(output_zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+        for item in encontrados:
+            nome_arquivo = item["nome_arquivo"]
+            url = item["download"]["url"]
+
+            file_response = requests.get(url, stream=True)
+
+            if not file_response.ok:
+                print(f"Falhou ao baixar: {nome_arquivo}")
+                continue
+
+            with zipf.open(nome_arquivo, "w") as zf:
+                for chunk in file_response.iter_content(chunk_size=8192):
+                    zf.write(chunk)
+
+    print(f"ZIP gerado: {output_zip_path}")
+
+download_and_zip([
+    "6d882e08-92e5-4f53-8ea9-34d48db58d44",
+    "00008399-b767-450a-ba8c-f7ea81088d09",
+], "./anexos-processo.zip")
+```
+
+</CodeGroup>
+
+### Dependências
+
+<CodeGroup>
+
+```bash Node.js
+npm install node-fetch archiver
+```
+
+```bash Python
+pip install requests
+```
+
+</CodeGroup>
+
+<Info>
+  O limite máximo é de **50 IDs por requisição**. Para processos com mais
+  anexos, divida em lotes e chame o endpoint múltiplas vezes.
+</Info>

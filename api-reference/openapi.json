@@ -773,6 +773,57 @@
         }
       }
     },
+    "/process/download-urls": {
+      "post": {
+        "tags": ["process"],
+        "description": "Retorna URLs pré-assinadas para download dos arquivos correspondentes aos IDs informados. Cada URL tem validade de 30 minutos.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/attachment_download_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "URLs geradas com sucesso",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/attachment_download_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida (ex: array vazio, mais de 50 IDs, formato inválido)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/process-unfolding/get-all/{page}/{limit}": {
       "get": {
         "tags": ["processUnfolding"],
@@ -4991,6 +5042,114 @@
             "type": "number",
             "description": "Status HTTP",
             "example": 500
+          }
+        }
+      },
+      "attachment_download_request": {
+        "type": "object",
+        "required": ["ids"],
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "Lista de IDs dos attachments (máximo 50 por requisição)",
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": [
+              "6d882e08-92e5-4f53-8ea9-34d48db58d44",
+              "00008399-b767-450a-ba8c-f7ea81088d09"
+            ]
+          }
+        }
+      },
+      "attachment_download_item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID do attachment",
+            "example": "6d882e08-92e5-4f53-8ea9-34d48db58d44"
+          },
+          "nome_arquivo": {
+            "type": "string",
+            "description": "Nome original do arquivo",
+            "example": "file_name.pdf"
+          },
+          "tamanho_arquivo": {
+            "type": "string",
+            "description": "Tamanho do arquivo",
+            "example": "352.35 KB"
+          },
+          "criado_em": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data de criação do attachment",
+            "example": "2024-12-10T18:56:27.049Z"
+          },
+          "download": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL pré-assinada para download direto do arquivo. Válida por 30 minutos."
+              },
+              "expira_em": {
+                "type": "number",
+                "description": "Tempo de expiração da URL em segundos",
+                "example": 1800
+              }
+            }
+          },
+          "erro": {
+            "type": "string",
+            "nullable": true,
+            "description": "Mensagem de erro caso a URL não tenha sido gerada para este item",
+            "example": null
+          }
+        }
+      },
+      "attachment_download_response": {
+        "type": "object",
+        "properties": {
+          "encontrados": {
+            "type": "array",
+            "description": "Attachments encontrados com suas URLs de download",
+            "items": {
+              "$ref": "#/components/schemas/attachment_download_item"
+            }
+          },
+          "nao_encontrados": {
+            "type": "array",
+            "description": "IDs que não foram encontrados no sistema",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": ["00000000-0000-0000-0000-000000000000"]
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "solicitados": {
+                "type": "number",
+                "description": "Total de IDs enviados na requisição",
+                "example": 2
+              },
+              "total_encontrados": {
+                "type": "number",
+                "description": "Total de attachments encontrados",
+                "example": 1
+              },
+              "total_nao_encontrados": {
+                "type": "number",
+                "description": "Total de IDs não encontrados",
+                "example": 1
+              }
+            }
           }
         }
       }
