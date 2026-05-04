@@ -3066,6 +3066,16 @@
                       "description": "Número do processo",
                       "example": "21032025000000000000"
                     },
+                    "id_processo": {
+                      "type": "string",
+                      "description": "Id do processo",
+                      "example": "3950a7ff-dd40-4169-a6e5-4b3fd6d772a7"
+                    },
+                    "numero_pasta": {
+                      "type": "string",
+                      "description": "Número Da Pasta",
+                      "example": "2026022221"
+                    },
                     "id_grupo": {
                       "type": "string",
                       "description": "Id do grupo",
