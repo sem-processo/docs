@@ -1469,10 +1469,36 @@
                   }
                 },
                 "tipo_da_acao": {
-                  "description": "Tipo da ação"
+                  "type": "object",
+                  "description": "Tipo da ação",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id do tipo da ação",
+                      "example": "a1b2c3d4-0000-0000-0000-000000000002"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do tipo da ação",
+                      "example": "Ação Declaratória"
+                    }
+                  }
                 },
                 "justica": {
-                  "description": "Justiça"
+                  "type": "object",
+                  "description": "Justiça",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id da justiça",
+                      "example": "a1b2c3d4-0000-0000-0000-000000000001"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome da justiça",
+                      "example": "Justiça Estadual"
+                    }
+                  }
                 },
                 "regional": {
                   "type": "object",
@@ -1491,10 +1517,36 @@
                   }
                 },
                 "objeto_da_acao": {
-                  "description": "Objeto da ação"
+                  "type": "object",
+                  "description": "Objeto da ação",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id do objeto da ação",
+                      "example": "a1b2c3d4-0000-0000-0000-000000000003"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do objeto da ação",
+                      "example": "Dano Moral"
+                    }
+                  }
                 },
                 "object": {
-                  "description": "Objeto"
+                  "type": "object",
+                  "description": "Objeto",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id do objeto",
+                      "example": "a1b2c3d4-0000-0000-0000-000000000003"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do objeto",
+                      "example": "Dano Moral"
+                    }
+                  }
                 },
                 "filial": {
                   "type": "object",
@@ -1644,9 +1696,40 @@
                   }
                 },
                 "advogado_parte_contraria": {
-                  "type": "string",
+                  "type": "object",
                   "description": "Advogado da parte contrária",
-                  "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id do advogado",
+                      "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do advogado",
+                      "example": "Dr. Example"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail do advogado",
+                      "example": "example@escritorio.com.br"
+                    },
+                    "document": {
+                      "type": "string",
+                      "description": "Número do documento",
+                      "example": "SP 123456"
+                    },
+                    "tipo_documento": {
+                      "type": "string",
+                      "description": "Tipo do documento",
+                      "example": "OAB"
+                    },
+                    "uf": {
+                      "type": "string",
+                      "description": "UF do advogado",
+                      "example": "SP"
+                    }
+                  }
                 },
                 "estado": {
                   "type": "object",
@@ -1665,9 +1748,40 @@
                   }
                 },
                 "criado_por": {
-                  "type": "string",
+                  "type": "object",
                   "description": "Usuário que cadastrou o processo",
-                  "example": "de0b4e81-c540-4111-9fa7-0e40e1466133"
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Id do usuário",
+                      "example": "de0b4e81-c540-4111-9fa7-0e40e1466133"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do usuário",
+                      "example": "Lawgic Exemplo"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail do usuário",
+                      "example": "lawgic.example@empresa.com.br"
+                    },
+                    "telefone": {
+                      "type": "string",
+                      "description": "Telefone do usuário",
+                      "example": "2199999-9999"
+                    },
+                    "ativo": {
+                      "type": "boolean",
+                      "description": "Usuário ativo?",
+                      "example": true
+                    },
+                    "perfil": {
+                      "type": "string",
+                      "description": "Perfil do usuário",
+                      "example": "admin"
+                    }
+                  }
                 },
                 "escritorio": {
                   "type": "object",
@@ -1735,13 +1849,10 @@
                     }
                   }
                 },
-                "id_justica": {
-                  "description": "Id da justiça"
-                },
                 "vara": {
-                  "type": "number",
+                  "type": "string",
                   "description": "Vara",
-                  "example": 1
+                  "example": "2º Juizado Especial Cível da Comarca da Capital"
                 },
                 "tipo_provisionamento": {
                   "type": "string",
@@ -1759,47 +1870,9 @@
                   "example": "2025-03-08T03:00:00.000Z"
                 },
                 "includeDeadline": {
-                  "type": "boolean",
+                  "type": "string",
                   "description": "Incluir prazo?",
-                  "example": false
-                },
-                "id_area_direito": {
-                  "type": "string",
-                  "description": "Id da área do direito",
-                  "example": "fd59b917-8164-4ea0-87f6-70c7d90d2b4a"
-                },
-                "id_grupo": {
-                  "type": "string",
-                  "description": "Id do grupo",
-                  "example": "67d18b20-6a66-4daa-aaf8-a8f97b0efffe"
-                },
-                "id_regional": {
-                  "type": "string",
-                  "description": "Id da regional",
-                  "example": "7481a0a9-3cda-47e8-b4e6-29b7716b0c97"
-                },
-                "id_tipo_da_acao": {},
-                "id_centro_custo": {
-                  "type": "string",
-                  "description": "Id do centro de custo",
-                  "example": "c6a05d28-c9b1-4c1f-aacf-0b58cd7992f1"
-                },
-                "objectId": {},
-                "id_orgao": {
-                  "type": "string",
-                  "description": "Id do órgão",
-                  "example": "45550bc6-16c4-4567-bb3e-7c6ef7813e97"
-                },
-                "id_vara": {},
-                "id_tribunal": {
-                  "type": "string",
-                  "description": "Id do tribunal",
-                  "example": "bd927686-220b-46f0-b507-0c7c761470b5"
-                },
-                "id_comarca": {
-                  "type": "string",
-                  "description": "Id da comarca",
-                  "example": "470e1800-c596-4b4f-86f5-a0248dfc0f0a"
+                  "example": "Sim"
                 },
                 "uf": {
                   "type": "string",
@@ -1807,57 +1880,92 @@
                   "example": "AC"
                 },
                 "status_interno": {
-                  "description": "Status interno"
-                },
-                "id_time_externo": {
                   "type": "string",
-                  "description": "Id do time externo",
-                  "example": "7f85b091-d832-451b-8387-3d58b5a4da14"
-                },
-                "id_time_interno": {
-                  "type": "string",
-                  "description": "Id do time interno",
-                  "example": "8d6b59e0-75d1-431e-8aae-df1a21cd6e7c"
+                  "description": "Status interno do processo",
+                  "example": "Ativo"
                 },
                 "outras_partes": {
                   "type": "array",
                   "description": "Outras partes",
-                  "example": [],
-                  "items": {}
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Id da parte contrária",
+                        "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                      },
+                      "nome": {
+                        "type": "string",
+                        "description": "Nome da parte contrária",
+                        "example": "Nome parte contrária"
+                      },
+                      "numero_documento": {
+                        "type": "string",
+                        "description": "Número do documento",
+                        "example": "000.000.000-00"
+                      },
+                      "tipo_documento": {
+                        "type": "string",
+                        "description": "Tipo do documento",
+                        "example": "CPF"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Tipo da parte contrária",
+                        "example": "Réu"
+                      }
+                    }
+                  }
                 },
                 "tipo_empresa_parte": {
                   "type": "string",
                   "description": "Tipo da empresa parte",
                   "example": "Ativo"
                 },
-                "id_empresa_parte": {
-                  "type": "string",
-                  "description": "Id da empresa parte",
-                  "example": "1b7d5dfc-6cdb-4094-8304-db58bff03853"
-                },
-                "id_empresa": {
-                  "type": "string",
-                  "description": "Id da empresa",
-                  "example": "1b7d5dfc-6cdb-4094-8304-db58bff03853"
-                },
                 "advogados_parte_contraria": {
                   "type": "array",
-                  "description": "Advogados parte contrária",
-                  "example": ["b874ddd8-3168-4fd7-8784-2abef4829425"],
+                  "description": "Advogados da parte contrária",
                   "items": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Id do advogado",
+                        "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                      },
+                      "nome": {
+                        "type": "string",
+                        "description": "Nome do advogado",
+                        "example": "Dr. Advogado Exemplo"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "E-mail do advogado",
+                        "example": "advogado.example@escritorio.com.br"
+                      },
+                      "document": {
+                        "type": "string",
+                        "description": "Número do documento",
+                        "example": "SP 123456"
+                      },
+                      "tipo_documento": {
+                        "type": "string",
+                        "description": "Tipo do documento",
+                        "example": "OAB"
+                      },
+                      "uf": {
+                        "type": "string",
+                        "description": "UF do advogado",
+                        "example": "SP"
+                      }
+                    }
                   }
                 },
-                "id_advogado_parte_contraria": {
+                "tipo_parte_contraria": {
                   "type": "string",
-                  "description": "Id advogado da parte contrária",
-                  "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
-                },
-                "tipo_parte_contraria": {},
-                "id_parte_contraria": {
-                  "type": "string",
-                  "description": "Id da parte contrária",
-                  "example": "b444a5cc-1732-462e-b6a4-3b8df03b381b"
+                  "description": "Tipo da parte contrária",
+                  "example": "Réu"
                 },
                 "status_do_processo": {
                   "type": "string",
@@ -1876,7 +1984,11 @@
                   "example": [],
                   "items": {}
                 },
-                "resumo_dos_fatos": {},
+                "resumo_dos_fatos": {
+                  "type": "string",
+                  "description": "Resumo dos fatos do processo",
+                  "example": "Contrato de prestação de serviços não cumprido pela parte contrária."
+                },
                 "risco": {
                   "type": "string",
                   "description": "Risco",
@@ -1885,10 +1997,18 @@
                 "valor_da_causa": {
                   "type": "number",
                   "description": "Valor da causa",
-                  "example": 8000
+                  "example": 33.33
                 },
-                "fase_do_processo": {},
-                "data_de_ocorrencia": {},
+                "fase_do_processo": {
+                  "type": "string",
+                  "description": "Fase do processo",
+                  "example": "Conhecimento"
+                },
+                "data_de_ocorrencia": {
+                  "type": "string",
+                  "description": "Data de ocorrência",
+                  "example": "2026-05-04T03:00:00.000Z"
+                },
                 "data_de_citacao": {
                   "type": "string",
                   "description": "Data da citação",
@@ -1968,17 +2088,22 @@
                       "description": "Data de encerramento do processo no tribunal",
                       "example": "2025-09-04T15:19:26.705Z"
                     },
-                    "id_processo": {
-                      "type": "string",
-                      "description": "Id do processo",
-                      "example": "12d18b20-6a66-4daa-aaf8-a8f97b0efffe"
-                    },
                     "id": {
                       "type": "string",
                       "description": "Id do encerramento",
                       "example": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
                     }
                   }
+                },
+                "ativo": {
+                  "type": "boolean",
+                  "description": "Processo ativo?",
+                  "example": true
+                },
+                "internalCode": {
+                  "type": "string",
+                  "description": "Código interno do processo",
+                  "example": "2026040013"
                 }
               }
             }
@@ -2031,10 +2156,36 @@
             }
           },
           "tipo_da_acao": {
-            "description": "Tipo da ação"
+            "type": "object",
+            "description": "Tipo da ação",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id do tipo da ação",
+                "example": "a1b2c3d4-0000-0000-0000-000000000002"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome do tipo da ação",
+                "example": "Ação Declaratória"
+              }
+            }
           },
           "justica": {
-            "description": "Justiça"
+            "type": "object",
+            "description": "Justiça",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id da justiça",
+                "example": "a1b2c3d4-0000-0000-0000-000000000001"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome da justiça",
+                "example": "Justiça Estadual"
+              }
+            }
           },
           "regional": {
             "type": "object",
@@ -2053,10 +2204,36 @@
             }
           },
           "objeto_da_acao": {
-            "description": "Objeto da ação"
+            "type": "object",
+            "description": "Objeto da ação",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id do objeto da ação",
+                "example": "a1b2c3d4-0000-0000-0000-000000000003"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome do objeto da ação",
+                "example": "Dano Moral"
+              }
+            }
           },
           "object": {
-            "description": "Objeto"
+            "type": "object",
+            "description": "Objeto",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id do objeto",
+                "example": "a1b2c3d4-0000-0000-0000-000000000003"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome do objeto",
+                "example": "Dano Moral"
+              }
+            }
           },
           "filial": {
             "type": "object",
@@ -2206,9 +2383,40 @@
             }
           },
           "advogado_parte_contraria": {
-            "type": "string",
+            "type": "object",
             "description": "Advogado da parte contrária",
-            "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id do advogado",
+                "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome do advogado",
+                "example": "Dr. Example"
+              },
+              "email": {
+                "type": "string",
+                "description": "E-mail do advogado",
+                "example": "example@escritorio.com.br"
+              },
+              "document": {
+                "type": "string",
+                "description": "Número do documento",
+                "example": "SP 123456"
+              },
+              "tipo_documento": {
+                "type": "string",
+                "description": "Tipo do documento",
+                "example": "OAB"
+              },
+              "uf": {
+                "type": "string",
+                "description": "UF do advogado",
+                "example": "SP"
+              }
+            }
           },
           "estado": {
             "type": "object",
@@ -2227,9 +2435,40 @@
             }
           },
           "criado_por": {
-            "type": "string",
+            "type": "object",
             "description": "Usuário que cadastrou o processo",
-            "example": "de0b4e81-c540-4111-9fa7-0e40e1466133"
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id do usuário",
+                "example": "de0b4e81-c540-4111-9fa7-0e40e1466133"
+              },
+              "nome": {
+                "type": "string",
+                "description": "Nome do usuário",
+                "example": "Lawgic Example"
+              },
+              "email": {
+                "type": "string",
+                "description": "E-mail do usuário",
+                "example": "lawgic.example@empresa.com.br"
+              },
+              "telefone": {
+                "type": "string",
+                "description": "Telefone do usuário",
+                "example": "2199999-9999"
+              },
+              "ativo": {
+                "type": "boolean",
+                "description": "Usuário ativo?",
+                "example": true
+              },
+              "perfil": {
+                "type": "string",
+                "description": "Perfil do usuário",
+                "example": "admin"
+              }
+            }
           },
           "escritorio": {
             "type": "object",
@@ -2297,13 +2536,10 @@
               }
             }
           },
-          "id_justica": {
-            "description": "Id da justiça"
-          },
           "vara": {
-            "type": "number",
+            "type": "string",
             "description": "Vara",
-            "example": 1
+            "example": "2º Juizado Especial Cível da Comarca da Capital"
           },
           "tipo_provisionamento": {
             "type": "string",
@@ -2321,47 +2557,9 @@
             "example": "2025-03-08T03:00:00.000Z"
           },
           "includeDeadline": {
-            "type": "boolean",
+            "type": "string",
             "description": "Incluir prazo?",
-            "example": false
-          },
-          "id_area_direito": {
-            "type": "string",
-            "description": "Id da área do direito",
-            "example": "fd59b917-8164-4ea0-87f6-70c7d90d2b4a"
-          },
-          "id_grupo": {
-            "type": "string",
-            "description": "Id do grupo",
-            "example": "67d18b20-6a66-4daa-aaf8-a8f97b0efffe"
-          },
-          "id_regional": {
-            "type": "string",
-            "description": "Id da regional",
-            "example": "7481a0a9-3cda-47e8-b4e6-29b7716b0c97"
-          },
-          "id_tipo_da_acao": {},
-          "id_centro_custo": {
-            "type": "string",
-            "description": "Id do centro de custo",
-            "example": "c6a05d28-c9b1-4c1f-aacf-0b58cd7992f1"
-          },
-          "objectId": {},
-          "id_orgao": {
-            "type": "string",
-            "description": "Id do órgão",
-            "example": "45550bc6-16c4-4567-bb3e-7c6ef7813e97"
-          },
-          "id_vara": {},
-          "id_tribunal": {
-            "type": "string",
-            "description": "Id do tribunal",
-            "example": "bd927686-220b-46f0-b507-0c7c761470b5"
-          },
-          "id_comarca": {
-            "type": "string",
-            "description": "Id da comarca",
-            "example": "470e1800-c596-4b4f-86f5-a0248dfc0f0a"
+            "example": "Sim"
           },
           "uf": {
             "type": "string",
@@ -2369,57 +2567,92 @@
             "example": "AC"
           },
           "status_interno": {
-            "description": "Status interno"
-          },
-          "id_time_externo": {
             "type": "string",
-            "description": "Id do time externo",
-            "example": "7f85b091-d832-451b-8387-3d58b5a4da14"
-          },
-          "id_time_interno": {
-            "type": "string",
-            "description": "Id do time interno",
-            "example": "8d6b59e0-75d1-431e-8aae-df1a21cd6e7c"
+            "description": "Status interno do processo",
+            "example": "Ativo"
           },
           "outras_partes": {
             "type": "array",
             "description": "Outras partes",
-            "example": [],
-            "items": {}
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Id da parte contrária",
+                  "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                },
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da parte contrária",
+                  "example": "Nome parte contrária"
+                },
+                "numero_documento": {
+                  "type": "string",
+                  "description": "Número do documento",
+                  "example": "000.000.000-00"
+                },
+                "tipo_documento": {
+                  "type": "string",
+                  "description": "Tipo do documento",
+                  "example": "CPF"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Tipo da parte contrária",
+                  "example": "Réu"
+                }
+              }
+            }
           },
           "tipo_empresa_parte": {
             "type": "string",
             "description": "Tipo da empresa parte",
             "example": "Ativo"
           },
-          "id_empresa_parte": {
-            "type": "string",
-            "description": "Id da empresa parte",
-            "example": "1b7d5dfc-6cdb-4094-8304-db58bff03853"
-          },
-          "id_empresa": {
-            "type": "string",
-            "description": "Id da empresa",
-            "example": "1b7d5dfc-6cdb-4094-8304-db58bff03853"
-          },
           "advogados_parte_contraria": {
             "type": "array",
-            "description": "Advogados parte contrária",
-            "example": ["b874ddd8-3168-4fd7-8784-2abef4829425"],
+            "description": "Advogados da parte contrária",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Id do advogado",
+                  "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                },
+                "nome": {
+                  "type": "string",
+                  "description": "Nome do advogado",
+                  "example": "Dr. Example"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "E-mail do advogado",
+                  "example": "example@escritorio.com.br"
+                },
+                "document": {
+                  "type": "string",
+                  "description": "Número do documento",
+                  "example": "SP 123456"
+                },
+                "tipo_documento": {
+                  "type": "string",
+                  "description": "Tipo do documento",
+                  "example": "OAB"
+                },
+                "uf": {
+                  "type": "string",
+                  "description": "UF do advogado",
+                  "example": "SP"
+                }
+              }
             }
           },
-          "id_advogado_parte_contraria": {
+          "tipo_parte_contraria": {
             "type": "string",
-            "description": "Id advogado da parte contrária",
-            "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
-          },
-          "tipo_parte_contraria": {},
-          "id_parte_contraria": {
-            "type": "string",
-            "description": "Id da parte contrária",
-            "example": "b444a5cc-1732-462e-b6a4-3b8df03b381b"
+            "description": "Tipo da parte contrária",
+            "example": "Réu"
           },
           "status_do_processo": {
             "type": "string",
@@ -2429,16 +2662,28 @@
           "anexos": {
             "type": "array",
             "description": "Anexos do processo",
-            "example": [],
-            "items": {}
+            "example": [
+              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
+            ],
+            "items": {
+              "type": "string"
+            }
           },
           "anexos_de_fluxo": {
             "type": "array",
             "description": "Anexos relacionados aos fluxos do processo",
-            "example": [],
-            "items": {}
+            "example": [
+              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
+            ],
+            "items": {
+              "type": "string"
+            }
           },
-          "resumo_dos_fatos": {},
+          "resumo_dos_fatos": {
+            "type": "string",
+            "description": "Resumo dos fatos do processo",
+            "example": "Contrato de prestação de serviços não cumprido pela parte contrária."
+          },
           "risco": {
             "type": "string",
             "description": "Risco",
@@ -2449,8 +2694,16 @@
             "description": "Valor da causa",
             "example": 8000
           },
-          "fase_do_processo": {},
-          "data_de_ocorrencia": {},
+          "fase_do_processo": {
+            "type": "string",
+            "description": "Fase do processo",
+            "example": "Conhecimento"
+          },
+          "data_de_ocorrencia": {
+            "type": "string",
+            "description": "Data de ocorrência",
+            "example": "2026-05-04T03:00:00.000Z"
+          },
           "data_de_citacao": {
             "type": "string",
             "description": "Data da citação",
@@ -2530,17 +2783,22 @@
                 "description": "Data de encerramento do processo no tribunal",
                 "example": "2025-09-04T15:19:26.705Z"
               },
-              "id_processo": {
-                "type": "string",
-                "description": "Id do processo",
-                "example": "12d18b20-6a66-4daa-aaf8-a8f97b0efffe"
-              },
               "id": {
                 "type": "string",
                 "description": "Id do encerramento",
                 "example": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
               }
             }
+          },
+          "ativo": {
+            "type": "boolean",
+            "description": "Processo ativo?",
+            "example": true
+          },
+          "internalCode": {
+            "type": "string",
+            "description": "Código interno do processo",
+            "example": "2026040013"
           }
         }
       },
@@ -2954,7 +3212,9 @@
           "advogados_parte_contraria": {
             "type": "array",
             "description": "Advogados parte contrária",
-            "example": ["b874ddd8-3168-4fd7-8784-2abef4829425"],
+            "example": [
+              "b874ddd8-3168-4fd7-8784-2abef4829425"
+            ],
             "items": {
               "type": "string"
             }
@@ -4066,7 +4326,9 @@
                 "recibos": {
                   "type": "array",
                   "description": "Recibos",
-                  "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
+                  "example": [
+                    "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
+                  ],
                   "items": {
                     "type": "string"
                   }
@@ -4079,7 +4341,9 @@
                 "anexos": {
                   "type": "array",
                   "description": "Anexos",
-                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+                  "example": [
+                    "0012448a-d078-408a-9bd4-bbd2f9080b4f"
+                  ],
                   "items": {
                     "type": "string"
                   }
@@ -4284,7 +4548,9 @@
           "recibos": {
             "type": "array",
             "description": "Recibos",
-            "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
+            "example": [
+              "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
+            ],
             "items": {
               "type": "string"
             }
@@ -4297,7 +4563,9 @@
           "anexos": {
             "type": "array",
             "description": "Anexos",
-            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+            "example": [
+              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
+            ],
             "items": {
               "type": "string"
             }
@@ -4375,7 +4643,6 @@
           "list": {
             "type": "array",
             "description": "Lista de publicações",
-
             "items": {
               "type": "object",
               "properties": {
@@ -4734,7 +5001,9 @@
                 "tarefas_criadas": {
                   "type": "array",
                   "description": "Tarefas criadas",
-                  "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
+                  "example": [
+                    "754300fe-6946-4e9a-b604-324eddb3f0e2"
+                  ],
                   "items": {
                     "type": "string"
                   }
@@ -4804,7 +5073,9 @@
           "tarefas_criadas": {
             "type": "array",
             "description": "Tarefas criadas",
-            "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
+            "example": [
+              "754300fe-6946-4e9a-b604-324eddb3f0e2"
+            ],
             "items": {
               "type": "string"
             }
@@ -5081,7 +5352,9 @@
       },
       "attachment_download_request": {
         "type": "object",
-        "required": ["ids"],
+        "required": [
+          "ids"
+        ],
         "properties": {
           "ids": {
             "type": "array",
@@ -5163,7 +5436,9 @@
               "type": "string",
               "format": "uuid"
             },
-            "example": ["00000000-0000-0000-0000-000000000000"]
+            "example": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
           },
           "meta": {
             "type": "object",
