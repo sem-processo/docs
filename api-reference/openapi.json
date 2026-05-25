@@ -1981,8 +1981,10 @@
                 "anexos_de_fluxo": {
                   "type": "array",
                   "description": "Anexos relacionados aos fluxos do processo",
-                  "example": [],
-                  "items": {}
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "resumo_dos_fatos": {
                   "type": "string",
@@ -2662,9 +2664,7 @@
           "anexos": {
             "type": "array",
             "description": "Anexos do processo",
-            "example": [
-              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-            ],
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
             "items": {
               "type": "string"
             }
@@ -2672,9 +2672,7 @@
           "anexos_de_fluxo": {
             "type": "array",
             "description": "Anexos relacionados aos fluxos do processo",
-            "example": [
-              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-            ],
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
             "items": {
               "type": "string"
             }
@@ -3212,9 +3210,7 @@
           "advogados_parte_contraria": {
             "type": "array",
             "description": "Advogados parte contrária",
-            "example": [
-              "b874ddd8-3168-4fd7-8784-2abef4829425"
-            ],
+            "example": ["b874ddd8-3168-4fd7-8784-2abef4829425"],
             "items": {
               "type": "string"
             }
@@ -3410,8 +3406,10 @@
                 "anexos": {
                   "type": "array",
                   "description": "Anexos da tarefa",
-                  "example": [],
-                  "items": {}
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -3531,8 +3529,10 @@
           "anexos": {
             "type": "array",
             "description": "Anexos da tarefa",
-            "example": [],
-            "items": {}
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -4326,9 +4326,7 @@
                 "recibos": {
                   "type": "array",
                   "description": "Recibos",
-                  "example": [
-                    "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
-                  ],
+                  "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
                   "items": {
                     "type": "string"
                   }
@@ -4341,9 +4339,7 @@
                 "anexos": {
                   "type": "array",
                   "description": "Anexos",
-                  "example": [
-                    "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-                  ],
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
                   "items": {
                     "type": "string"
                   }
@@ -4548,9 +4544,7 @@
           "recibos": {
             "type": "array",
             "description": "Recibos",
-            "example": [
-              "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
-            ],
+            "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
             "items": {
               "type": "string"
             }
@@ -4563,9 +4557,7 @@
           "anexos": {
             "type": "array",
             "description": "Anexos",
-            "example": [
-              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-            ],
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
             "items": {
               "type": "string"
             }
@@ -5001,9 +4993,7 @@
                 "tarefas_criadas": {
                   "type": "array",
                   "description": "Tarefas criadas",
-                  "example": [
-                    "754300fe-6946-4e9a-b604-324eddb3f0e2"
-                  ],
+                  "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
                   "items": {
                     "type": "string"
                   }
@@ -5073,9 +5063,7 @@
           "tarefas_criadas": {
             "type": "array",
             "description": "Tarefas criadas",
-            "example": [
-              "754300fe-6946-4e9a-b604-324eddb3f0e2"
-            ],
+            "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
             "items": {
               "type": "string"
             }
@@ -5352,9 +5340,7 @@
       },
       "attachment_download_request": {
         "type": "object",
-        "required": [
-          "ids"
-        ],
+        "required": ["ids"],
         "properties": {
           "ids": {
             "type": "array",
@@ -5436,9 +5422,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "example": [
-              "00000000-0000-0000-0000-000000000000"
-            ]
+            "example": ["00000000-0000-0000-0000-000000000000"]
           },
           "meta": {
             "type": "object",
