@@ -1866,7 +1866,13 @@
                 },
                 "anexos": {
                   "type": "array",
-                  "description": "Anexos",
+                  "description": "Anexos do processo",
+                  "example": [],
+                  "items": {}
+                },
+                "anexos_de_fluxo": {
+                  "type": "array",
+                  "description": "Anexos relacionados aos fluxos do processo",
                   "example": [],
                   "items": {}
                 },
@@ -2422,7 +2428,13 @@
           },
           "anexos": {
             "type": "array",
-            "description": "Anexos",
+            "description": "Anexos do processo",
+            "example": [],
+            "items": {}
+          },
+          "anexos_de_fluxo": {
+            "type": "array",
+            "description": "Anexos relacionados aos fluxos do processo",
             "example": [],
             "items": {}
           },
@@ -3134,6 +3146,12 @@
                   "type": "string",
                   "description": "Id da tarefa",
                   "example": "754300fe-6946-4e9a-b604-324eddb3f0e2"
+                },
+                "anexos": {
+                  "type": "array",
+                  "description": "Anexos da tarefa",
+                  "example": [],
+                  "items": {}
                 }
               }
             }
@@ -3249,6 +3267,12 @@
             "type": "string",
             "description": "Id da tarefa",
             "example": "754300fe-6946-4e9a-b604-324eddb3f0e2"
+          },
+          "anexos": {
+            "type": "array",
+            "description": "Anexos da tarefa",
+            "example": [],
+            "items": {}
           }
         }
       },
