@@ -1830,23 +1830,15 @@
                   "description": "O valor da causa é a soma do valor dos pedidos?",
                   "example": false
                 },
-                "customFields": {
+                "campos_personalizados": {
                   "type": "object",
-                  "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-                  "properties": {
-                    "tipo_da_acao": {
-                      "type": "object",
-                      "properties": {
-                        "value": {
-                          "type": "string",
-                          "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                        },
-                        "label": {
-                          "type": "string",
-                          "example": "Ação civil pública"
-                        }
-                      }
-                    }
+                  "description": "Campos personalizados do grupo",
+                  "example": {
+                    "tipo_de_resultado": {
+                      "nome": "Resultado",
+                      "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+                    },
+                    "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
                   }
                 },
                 "vara": {
@@ -2519,23 +2511,15 @@
             "description": "O valor da causa é a soma do valor dos pedidos?",
             "example": false
           },
-          "customFields": {
+          "campos_personalizados": {
             "type": "object",
-            "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-            "properties": {
-              "tipo_da_acao": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                  },
-                  "label": {
-                    "type": "string",
-                    "example": "Ação civil pública"
-                  }
-                }
-              }
+            "description": "Campos personalizados do grupo",
+            "example": {
+              "tipo_de_resultado": {
+                "nome": "Resultado",
+                "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+              },
+              "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
             }
           },
           "vara": {
@@ -3083,23 +3067,15 @@
             "description": "O valor da causa é a soma do valor dos pedidos?",
             "example": false
           },
-          "customFields": {
+          "campos_personalizados": {
             "type": "object",
-            "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-            "properties": {
-              "tipo_da_acao": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                  },
-                  "label": {
-                    "type": "string",
-                    "example": "Ação civil pública"
-                  }
-                }
-              }
+            "description": "Campos personalizados do grupo",
+            "example": {
+              "tipo_de_resultado": {
+                "nome": "Resultado",
+                "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+              },
+              "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
             }
           },
           "id_justica": {
