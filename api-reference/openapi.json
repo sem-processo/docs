@@ -1830,23 +1830,15 @@
                   "description": "O valor da causa é a soma do valor dos pedidos?",
                   "example": false
                 },
-                "customFields": {
+                "campos_personalizados": {
                   "type": "object",
-                  "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-                  "properties": {
-                    "tipo_da_acao": {
-                      "type": "object",
-                      "properties": {
-                        "value": {
-                          "type": "string",
-                          "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                        },
-                        "label": {
-                          "type": "string",
-                          "example": "Ação civil pública"
-                        }
-                      }
-                    }
+                  "description": "Campos personalizados do grupo",
+                  "example": {
+                    "tipo_de_resultado": {
+                      "nome": "Resultado",
+                      "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+                    },
+                    "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
                   }
                 },
                 "vara": {
@@ -1974,9 +1966,17 @@
                 },
                 "anexos": {
                   "type": "array",
-                  "description": "Anexos",
+                  "description": "Anexos do processo",
                   "example": [],
                   "items": {}
+                },
+                "anexos_de_fluxo": {
+                  "type": "array",
+                  "description": "Anexos relacionados aos fluxos do processo",
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "resumo_dos_fatos": {
                   "type": "string",
@@ -2511,23 +2511,15 @@
             "description": "O valor da causa é a soma do valor dos pedidos?",
             "example": false
           },
-          "customFields": {
+          "campos_personalizados": {
             "type": "object",
-            "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-            "properties": {
-              "tipo_da_acao": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                  },
-                  "label": {
-                    "type": "string",
-                    "example": "Ação civil pública"
-                  }
-                }
-              }
+            "description": "Campos personalizados do grupo",
+            "example": {
+              "tipo_de_resultado": {
+                "nome": "Resultado",
+                "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+              },
+              "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
             }
           },
           "vara": {
@@ -2655,10 +2647,16 @@
           },
           "anexos": {
             "type": "array",
-            "description": "Anexos",
-            "example": [
-              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-            ],
+            "description": "Anexos do processo",
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+            "items": {
+              "type": "string"
+            }
+          },
+          "anexos_de_fluxo": {
+            "type": "array",
+            "description": "Anexos relacionados aos fluxos do processo",
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
             "items": {
               "type": "string"
             }
@@ -3069,23 +3067,15 @@
             "description": "O valor da causa é a soma do valor dos pedidos?",
             "example": false
           },
-          "customFields": {
+          "campos_personalizados": {
             "type": "object",
-            "description": "Campos customizados, são campos únicos e exclusivos do grupo",
-            "properties": {
-              "tipo_da_acao": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "example": "1f9d016e-be98-49cc-92ae-354412873868"
-                  },
-                  "label": {
-                    "type": "string",
-                    "example": "Ação civil pública"
-                  }
-                }
-              }
+            "description": "Campos personalizados do grupo",
+            "example": {
+              "tipo_de_resultado": {
+                "nome": "Resultado",
+                "id": "c7b82d6b-b0ec-4434-88f9-2420170c43eb"
+              },
+              "data_do_ocorrido": "2022-08-19T03:00:00.000Z"
             }
           },
           "id_justica": {
@@ -3196,9 +3186,7 @@
           "advogados_parte_contraria": {
             "type": "array",
             "description": "Advogados parte contrária",
-            "example": [
-              "b874ddd8-3168-4fd7-8784-2abef4829425"
-            ],
+            "example": ["b874ddd8-3168-4fd7-8784-2abef4829425"],
             "items": {
               "type": "string"
             }
@@ -3390,6 +3378,14 @@
                   "type": "string",
                   "description": "Id da tarefa",
                   "example": "754300fe-6946-4e9a-b604-324eddb3f0e2"
+                },
+                "anexos": {
+                  "type": "array",
+                  "description": "Anexos da tarefa",
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -3505,6 +3501,14 @@
             "type": "string",
             "description": "Id da tarefa",
             "example": "754300fe-6946-4e9a-b604-324eddb3f0e2"
+          },
+          "anexos": {
+            "type": "array",
+            "description": "Anexos da tarefa",
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -4298,9 +4302,7 @@
                 "recibos": {
                   "type": "array",
                   "description": "Recibos",
-                  "example": [
-                    "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
-                  ],
+                  "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
                   "items": {
                     "type": "string"
                   }
@@ -4313,9 +4315,7 @@
                 "anexos": {
                   "type": "array",
                   "description": "Anexos",
-                  "example": [
-                    "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-                  ],
+                  "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
                   "items": {
                     "type": "string"
                   }
@@ -4520,9 +4520,7 @@
           "recibos": {
             "type": "array",
             "description": "Recibos",
-            "example": [
-              "754f9fdf-fac5-40ac-8c7d-4e9af3191fda"
-            ],
+            "example": ["754f9fdf-fac5-40ac-8c7d-4e9af3191fda"],
             "items": {
               "type": "string"
             }
@@ -4535,9 +4533,7 @@
           "anexos": {
             "type": "array",
             "description": "Anexos",
-            "example": [
-              "0012448a-d078-408a-9bd4-bbd2f9080b4f"
-            ],
+            "example": ["0012448a-d078-408a-9bd4-bbd2f9080b4f"],
             "items": {
               "type": "string"
             }
@@ -4973,9 +4969,7 @@
                 "tarefas_criadas": {
                   "type": "array",
                   "description": "Tarefas criadas",
-                  "example": [
-                    "754300fe-6946-4e9a-b604-324eddb3f0e2"
-                  ],
+                  "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
                   "items": {
                     "type": "string"
                   }
@@ -5045,9 +5039,7 @@
           "tarefas_criadas": {
             "type": "array",
             "description": "Tarefas criadas",
-            "example": [
-              "754300fe-6946-4e9a-b604-324eddb3f0e2"
-            ],
+            "example": ["754300fe-6946-4e9a-b604-324eddb3f0e2"],
             "items": {
               "type": "string"
             }
@@ -5324,9 +5316,7 @@
       },
       "attachment_download_request": {
         "type": "object",
-        "required": [
-          "ids"
-        ],
+        "required": ["ids"],
         "properties": {
           "ids": {
             "type": "array",
@@ -5408,9 +5398,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "example": [
-              "00000000-0000-0000-0000-000000000000"
-            ]
+            "example": ["00000000-0000-0000-0000-000000000000"]
           },
           "meta": {
             "type": "object",
