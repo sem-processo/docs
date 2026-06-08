@@ -729,7 +729,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/process/update/{processId}": {
       "patch": {
         "tags": ["process"],
         "description": "Atualiza os dados de um processo.",
