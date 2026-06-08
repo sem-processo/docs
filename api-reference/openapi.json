@@ -880,7 +880,7 @@
         }
       }
     },
-    "/process": {
+    "/process/create": {
       "post": {
         "tags": ["process"],
         "description": "Cria um novo processo.",
