@@ -72,7 +72,9 @@
               "api-reference/process/get-all",
               "api-reference/process/details",
               "api-reference/process/by-number",
-              "api-reference/process/download-urls"
+              "api-reference/process/download-urls",
+              "api-reference/process/create",
+              "api-reference/process/update"
             ]
           },
           {

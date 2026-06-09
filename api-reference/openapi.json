@@ -731,6 +731,64 @@
         }
       }
     },
+    "/process/update/{processId}": {
+      "patch": {
+        "tags": ["process"],
+        "description": "Atualiza os dados de um processo.",
+        "parameters": [
+          {
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "description": "ID do processo",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/process_update_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Processo atualizado com sucesso."
+          },
+          "400": {
+            "description": "Parâmetros inválidos.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado."
+          },
+          "404": {
+            "description": "Processo não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/process/by-number/{processNumber}": {
       "get": {
         "tags": ["process"],
@@ -810,6 +868,50 @@
           },
           "401": {
             "description": "Não autorizado"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/process/create": {
+      "post": {
+        "tags": ["process"],
+        "description": "Cria um novo processo.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/process_create_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Processo criado com sucesso."
+          },
+          "400": {
+            "description": "Parâmetros inválidos.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado."
           },
           "500": {
             "description": "Erro interno do servidor.",
@@ -3165,8 +3267,36 @@
           "outras_partes": {
             "type": "array",
             "description": "Outras partes",
-            "example": [],
-            "items": {}
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Id da parte contrária",
+                  "example": "b874ddd8-3168-4fd7-8784-2abef4829425"
+                },
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da parte contrária",
+                  "example": "Nome parte contrária"
+                },
+                "numero_documento": {
+                  "type": "string",
+                  "description": "Número do documento",
+                  "example": "000.000.000-00"
+                },
+                "tipo_documento": {
+                  "type": "string",
+                  "description": "Tipo do documento",
+                  "example": "CPF"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Tipo da parte contrária",
+                  "example": "Réu"
+                }
+              }
+            }
           },
           "tipo_empresa_parte": {
             "type": "string",
@@ -5312,6 +5442,159 @@
             "description": "Status HTTP",
             "example": 500
           }
+        }
+      },
+      "process_create_body": {
+        "type": "object",
+        "properties": {
+          "numero_do_processo": { "type": "string", "example": "0000000-00.0000.0.00.0000" },
+          "extrajudicial": { "type": "string", "enum": ["Sim", "Nao"], "example": "Nao", "description": "Indica se o processo é extrajudicial." },
+          "tipo_de_processo": { "type": "string", "enum": ["Judicial", "Administrativo", "Trabalhista", "Extrajudicial", "Administrativo (Procon)", "Superendividamento", "Inquérito policial", "Judicial/Arbitral", "Ofício", "Notificação"], "example": "Judicial" },
+          "rito": { "type": "string", "enum": ["Administrativo", "Comum", "Especial", "Sumário", "Sumaríssimo", "Ordinário", "Pré-Processual", "Execução Fiscal", "Cautelar", "Execução", "Extrajudicial", "Juizado Especial"], "example": "Ordinário" },
+          "tipo_de_contingencia": { "type": "string", "enum": ["Ativa", "Passiva", "Terceiro Interessado", "Cedido"], "example": "Passiva" },
+          "data_de_distribuicao": { "type": "string", "format": "date-time", "example": "2024-01-15T00:00:00.000Z" },
+          "data_de_citacao": { "type": "string", "format": "date-time", "example": "2024-01-20T00:00:00.000Z" },
+          "data_de_ocorrencia": { "type": "string", "format": "date-time", "example": "2024-01-10T00:00:00.000Z" },
+          "fase_do_processo": { "type": "string", "enum": ["Conhecimento", "Instrução", "Sentença", "Recursal", "Execução", "Encerramento", "Arquivamento", "Comunicação e Penhora", "Pedido de Parcelamento do Débito", "Exceção de Pré-Executividade", "Embargos à Execução", "Pedido de Suspensão", "Leilão dos Bens Penhorados", "Extinção da Execução", "Postulatória", "Pós-Defesa", "Cumprimento de Sentença/Execução", "Aguardando Arquivamento", "Inicial", "Suspenso - acordo", "Suspenso - decisão judicial", "Julgamento", "Reclamação", "Processo Administrativo", "Conciliatória", "Acordo", "Parcelamento", "Execução Fiscal", "Probatória", "Decisória", "Acordo em andamento", "Acordo extrajudicial", "Acordo judicial", "Administrativo", "Arquivado", "Ativo", "Desistência", "Em andamento", "Em tramitação", "Extinto sem resolução do mérito", "Final", "Julgado", "Notificação enviada", "Offboarding", "Pericial", "Reclamação respondida", "Trânsito em julgado", "Aguarda distribuição", "Com escritório - análise dos documentos", "Concluso"], "example": "Conhecimento" },
+          "valor_da_causa": { "type": "number", "example": 50000.00 },
+          "risco": { "type": "string", "enum": ["Não aplicável", "Possível", "Provável", "Remoto", "Execução"], "example": "Provável" },
+          "resumo_dos_fatos": { "type": "string", "example": "Reclamante alega dispensa sem justa causa com verbas rescisórias não pagas." },
+          "anexos": { "type": "array", "items": { "type": "string", "format": "uuid" }, "description": "Lista de UUIDs dos anexos do processo.", "example": ["3fa85f64-5717-4562-b3fc-2c963f66afa6"] },
+          "tipo_parte_contraria": { "type": "string", "example": "Pessoa Física" },
+          "tipo_empresa_parte": { "type": "string", "example": "Réu" },
+          "tipo_de_parte": { "type": "string", "enum": ["Ativo", "Passivo", "Terceiro Interessado", "Cedido"], "description": "Tipo de parte da empresa no processo.", "example": "Passivo" },
+          "codigo_interno": { "type": "string", "description": "Código interno de controle do processo.", "example": "INT-2024-0042" },
+          "campos_customizados": { "type": "object", "description": "Campos customizados do processo em formato livre (chave-valor).", "example": { "numero_contrato": "CTR-2024-001", "setor": "Trabalhista" } },
+          "outras_partes": { "type": "array", "items": { "type": "string", "example": "uuid-da-parte-contraria" } },
+          "status_interno": { "type": "string", "enum": ["Ativo", "Arquivado", "Encerrado", "Suspenso/Sobrestado", "Removido", "Suspenso", "Parcelado", "Baixa Provisória", "Suspensão STF", "Extrajudicial"], "example": "Ativo" },
+          "uf": { "type": "string", "example": "SP" },
+          "incluir_prazo": { "type": "string", "enum": ["Sim", "Nao"], "example": "Sim", "description": "Indica se o processo possui prazo. Se `Sim`, o campo `prazo` é obrigatório." },
+          "prazo": { "type": "string", "format": "date-time", "example": "2024-06-30T00:00:00.000Z", "description": "Obrigatório quando `incluir_prazo` é `Sim`." },
+          "vara": { "type": "string", "example": "2ª Vara Cível" },
+          "tipo_provisionamento": { "type": "string", "enum": ["Processo", "Pedido"], "example": "Processo", "description": "Método de provisionamento." },
+          "valor_da_causa_soma_dos_pedidos": { "type": "boolean", "example": false },
+          "area_do_direito": { "type": "string", "description": "ID ou objeto com `id` da área do direito", "example": "uuid-da-area" },
+          "comarca": { "type": "string", "description": "ID ou objeto com `id` da comarca", "example": "uuid-da-comarca" },
+          "tribunal": { "type": "string", "description": "ID ou objeto com `id` do tribunal", "example": "uuid-do-tribunal" },
+          "orgao": { "type": "string", "description": "ID ou objeto com `id` do órgão administrativo", "example": "uuid-do-orgao" },
+          "centro_de_custo": { "type": "string", "description": "ID ou objeto com `id` do centro de custo", "example": "uuid-do-cc" },
+          "filial": { "type": "string", "description": "ID ou objeto com `id` da filial", "example": "uuid-da-filial" },
+          "regional": { "type": "string", "description": "ID ou objeto com `id` do regional", "example": "uuid-do-regional" },
+          "escritorio": { "type": "string", "description": "ID ou objeto com `id` do escritório externo", "example": "uuid-do-escritorio" },
+          "time_interno": { "type": "string", "description": "ID ou objeto com `id` do time interno", "example": "uuid-do-time" },
+          "empresa": { "type": "string", "description": "ID ou objeto com `id` da empresa", "example": "uuid-da-empresa" },
+          "empresa_parte": { "type": "string", "description": "ID ou objeto com `id` da empresa parte", "example": "uuid-da-empresa-parte" },
+          "parte_contraria": { "type": "string", "description": "ID ou objeto com `id` da parte contrária", "example": "uuid-da-parte-contraria" },
+          "advogado_parte_contraria": { "type": "string", "description": "ID ou objeto com `id` do advogado da parte contrária", "example": "uuid-do-advogado" },
+          "advogados_parte_contraria": { "type": "array", "description": "Lista de IDs ou objetos com `id` dos advogados da parte contrária", "items": { "type": "string" }, "example": ["uuid-1", "uuid-2"] },
+          "tipo_da_acao": { "type": "string", "description": "ID ou objeto com `id` do tipo da ação", "example": "uuid-do-tipo" },
+          "objeto_da_acao": { "type": "string", "description": "ID ou objeto com `id` do objeto da ação", "example": "uuid-do-objeto" },
+          "justica": { "type": "string", "description": "ID ou objeto com `id` da justiça", "example": "uuid-da-justica" },
+          "pedidos": {
+            "type": "array",
+            "description": "Pedidos de provisionamento. Obrigatório quando `tipo_provisionamento` está presente.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "valor_pedido": { "type": "number", "example": 10000.00 },
+                "provisao": { "type": "number", "example": 5000.00 },
+                "id_indice": { "type": "string", "example": "uuid-do-indice" },
+                "instancia": { "type": "string", "example": "1ª Instância" },
+                "data_base_correcao": { "type": "string", "format": "date-time", "example": "2024-01-01T00:00:00.000Z" },
+                "data_base_honorarios": { "type": "string", "format": "date-time", "example": "2024-01-01T00:00:00.000Z" }
+              }
+            }
+          },
+          "id_indice": { "type": "string", "description": "ID do índice de correção (quando `tipo_provisionamento` é `Processo`)", "example": "uuid-do-indice" },
+          "provisao": { "type": "number", "description": "Valor da provisão (quando `tipo_provisionamento` é `Processo`)", "example": 25000.00 },
+          "data_base_correcao": { "type": "string", "format": "date-time", "example": "2024-01-01T00:00:00.000Z" },
+          "data_base_honorarios": { "type": "string", "format": "date-time", "example": "2024-01-01T00:00:00.000Z" },
+          "informacoes_adicionais_pedido": { "type": "string", "example": "Informações adicionais sobre o pedido" },
+          "tem_recuperacao_deposito": { "type": "boolean", "description": "Indica se existe recuperação de depósito.", "example": false },
+          "registrar_diligencia": { "type": "string", "enum": ["Sim", "Nao"], "description": "Indica se deve registrar uma diligência.", "example": "Sim" },
+          "prazo_diligencia": { "type": "string", "format": "date-time", "description": "Prazo da diligência.", "example": "2024-07-15T00:00:00.000Z" },
+          "tipo_diligencia": { "type": "string", "description": "Tipo da diligência.", "example": "Citação" },
+          "local_diligencia": { "type": "string", "description": "Local da diligência.", "example": "São Paulo" },
+          "id_time_diligencia": { "type": "string", "description": "ID do time responsável pela diligência.", "example": "uuid-do-time" },
+          "registrar_audiencia": { "type": "string", "enum": ["Sim", "Nao"], "description": "Indica se deve registrar uma audiência.", "example": "Sim" },
+          "tipo_audiencia": { "type": "string", "enum": ["Administrativa", "Instrucao", "Conciliacao", "Una", "Inicial"], "description": "Tipo da audiência.", "example": "Conciliacao" },
+          "data_audiencia": { "type": "string", "format": "date-time", "description": "Data da audiência. Obrigatório quando `registrar_audiencia` é `Sim`.", "example": "2024-08-20T09:00:00.000Z" },
+          "modalidade_audiencia": { "type": "string", "enum": ["Online", "Presencial"], "description": "Modalidade da audiência. Obrigatório quando `registrar_audiencia` é `Sim`.", "example": "Presencial" },
+          "link_audiencia": { "type": "string", "description": "Link de acesso (quando `modalidade_audiencia` é `Online`).", "example": "https://meet.example.com/audiencia" },
+          "endereco_audiencia": { "type": "string", "description": "Endereço (quando `modalidade_audiencia` é `Presencial`).", "example": "Rua XV de Novembro, 1000 - São Paulo" },
+          "iniciar_fluxo_audiencia": { "type": "boolean", "description": "Inicia o fluxo de verificação de preposto/testemunha.", "example": true },
+          "prazo_verificacao_preposto": { "type": "string", "format": "date-time", "description": "Prazo para verificação de preposto/testemunha.", "example": null },
+          "tem_obrigacao": { "type": "string", "enum": ["Sim", "Nao"], "description": "Indica se há Obrigação de Fazer (OBF).", "example": "Sim" },
+          "origem_obrigacao": { "type": "string", "description": "Origem da obrigação. Obrigatório quando `tem_obrigacao` é `Sim`.", "example": "Decisão Judicial" },
+          "detalhes_obrigacao": { "type": "string", "description": "Detalhamento da obrigação. Obrigatório quando `tem_obrigacao` é `Sim`.", "example": "Pagamento de indenização por danos morais" },
+          "data_intimacao_obrigacao": { "type": "string", "format": "date-time", "description": "Data da intimação. Obrigatório quando `tem_obrigacao` é `Sim`.", "example": "2024-02-10T00:00:00.000Z" },
+          "prazo_cumprimento_obrigacao": { "type": "string", "format": "date-time", "description": "Prazo para cumprimento. Obrigatório quando `tem_obrigacao` é `Sim`.", "example": "2024-03-10T00:00:00.000Z" },
+          "anexos_obrigacao": { "type": "array", "description": "IDs de anexos da OBF.", "items": { "type": "string" }, "example": ["uuid-anexo-1"] },
+          "id_time_obrigacao": { "type": "string", "description": "ID do time responsável pela OBF.", "example": "uuid-do-time-obf" },
+          "tem_subsidio": { "type": "boolean", "description": "Indica se há subsídios.", "example": false },
+          "detalhes_subsidio": { "type": "string", "description": "Detalhes do subsídio.", "example": "Subsídio governamental" },
+          "id_time_subsidio": { "type": "string", "description": "ID do time de serviço do subsídio.", "example": "uuid-do-time-subsidio" },
+          "anexos_esperados_subsidio": { "type": "array", "items": { "type": "string" }, "description": "Anexos esperados do subsídio." },
+          "tipo_subsidio": { "type": "string", "description": "Tipo do subsídio.", "example": "Parcial" },
+          "subsidio_tem_prazo": { "type": "boolean", "description": "Indica se o subsídio tem prazo.", "example": false },
+          "prazo_subsidio": { "type": "string", "format": "date-time", "description": "Prazo do subsídio.", "example": null },
+          "tem_acordo": { "type": "boolean", "description": "Indica se há acordo.", "example": false },
+          "valor_acordo": { "type": "string", "description": "Valor do acordo. Obrigatório quando `tem_acordo` é `true`.", "example": "15.000,00" },
+          "prazo_acordo": { "type": "string", "description": "Prazo do acordo. Obrigatório quando `tem_acordo` é `true`.", "example": "30 dias" },
+          "detalhes_acordo": { "type": "string", "description": "Detalhes do acordo. Obrigatório quando `tem_acordo` é `true`.", "example": "Acordo extrajudicial firmado entre as partes" },
+          "anexos_acordo": { "type": "array", "items": { "type": "string" }, "description": "IDs de anexos do acordo. Obrigatório quando `tem_acordo` é `true`.", "example": ["uuid-anexo-acordo"] },
+          "notificar_time_interno": { "type": "boolean", "description": "Notifica o time interno sobre o novo processo.", "example": true },
+          "notificar_escritorio_externo": { "type": "boolean", "description": "Notifica o escritório externo sobre o novo processo.", "example": true }
+        }
+      },
+      "process_update_body": {
+        "type": "object",
+        "properties": {
+          "numero_do_processo": { "type": "string", "example": "0000000-00.0000.0.00.0000" },
+          "tipo_de_processo": { "type": "string", "example": "Judicial" },
+          "rito": { "type": "string", "example": "Ordinário" },
+          "tipo_de_contingencia": { "type": "string", "example": "Passivo" },
+          "data_de_distribuicao": { "type": "string", "format": "date-time", "example": "2024-01-15T00:00:00.000Z" },
+          "data_de_citacao": { "type": "string", "format": "date-time", "example": "2024-01-20T00:00:00.000Z" },
+          "data_de_ocorrencia": { "type": "string", "format": "date-time", "example": "2024-01-10T00:00:00.000Z" },
+          "fase_do_processo": { "type": "string", "example": "Conhecimento" },
+          "valor_da_causa": { "type": "string", "description": "Valor da causa no formato monetário brasileiro", "example": "50.000,00" },
+          "risco": { "type": "string", "example": "Alto" },
+          "resumo_dos_fatos": { "type": "string", "example": "Descrição dos fatos do processo." },
+          "tipo_parte_contraria": { "type": "string", "example": "Pessoa Física" },
+          "tipo_empresa_parte": { "type": "string", "example": "Réu" },
+          "outras_partes": { "type": "string", "example": "Nome da outra parte" },
+          "status_interno": { "type": "string", "example": "Ativo" },
+          "uf": { "type": "string", "example": "SP" },
+          "prazo": { "type": "string", "format": "date-time", "example": "2024-06-30T00:00:00.000Z" },
+          "tipo_provisionamento": { "type": "string", "enum": ["Processo", "Pedido"], "example": "Processo" },
+          "vara": { "type": "string", "example": "2ª Vara Cível" },
+          "incluir_prazo": { "type": "string", "enum": ["Sim", "Nao"], "example": "Sim" },
+          "valor_da_causa_soma_dos_pedidos": { "type": "boolean", "description": "Indica se o valor da causa deve ser calculado a partir da soma dos pedidos", "example": false },
+          "tipo_de_parte": { "type": "string", "example": "Réu" },
+          "codigo_interno": { "type": "string", "description": "Código interno de identificação do processo", "example": "INT-2024-001" },
+          "campos_customizados": { "type": "object", "description": "Campos customizados do processo no formato chave-valor", "example": { "campo1": "valor1" } },
+          "provisao": { "type": "string", "description": "Valor da provisão no formato monetário brasileiro", "example": "10.000,00" },
+          "id_indice": { "type": "string", "description": "ID do índice de correção monetária", "example": "uuid-do-indice" },
+          "data_base_correcao": { "type": "string", "format": "date-time", "nullable": true, "description": "Data base para cálculo de correção monetária", "example": "2024-01-01T00:00:00.000Z" },
+          "data_base_honorarios": { "type": "string", "format": "date-time", "nullable": true, "description": "Data base para cálculo de honorários", "example": "2024-01-01T00:00:00.000Z" },
+          "area_do_direito": { "type": "string", "description": "ID ou objeto com `id` da área do direito", "example": "uuid-da-area" },
+          "comarca": { "type": "string", "description": "ID ou objeto com `id` da comarca", "example": "uuid-da-comarca" },
+          "tribunal": { "type": "string", "description": "ID ou objeto com `id` do tribunal", "example": "uuid-do-tribunal" },
+          "orgao": { "type": "string", "description": "ID ou objeto com `id` do órgão administrativo", "example": "uuid-do-orgao" },
+          "centro_de_custo": { "type": "string", "description": "ID ou objeto com `id` do centro de custo", "example": "uuid-do-cc" },
+          "filial": { "type": "string", "description": "ID ou objeto com `id` da filial", "example": "uuid-da-filial" },
+          "regional": { "type": "string", "description": "ID ou objeto com `id` do regional", "example": "uuid-do-regional" },
+          "escritorio": { "type": "string", "description": "ID ou objeto com `id` do escritório externo", "example": "uuid-do-escritorio" },
+          "time_interno": { "type": "string", "description": "ID ou objeto com `id` do time interno", "example": "uuid-do-time" },
+          "empresa": { "type": "string", "description": "ID ou objeto com `id` da empresa", "example": "uuid-da-empresa" },
+          "empresa_parte": { "type": "string", "description": "ID ou objeto com `id` da empresa parte", "example": "uuid-da-empresa-parte" },
+          "parte_contraria": { "type": "string", "description": "ID ou objeto com `id` da parte contrária", "example": "uuid-da-parte-contraria" },
+          "advogado_parte_contraria": { "type": "string", "description": "ID ou objeto com `id` do advogado da parte contrária", "example": "uuid-do-advogado" },
+          "advogados_parte_contraria": { "type": "array", "description": "Lista de IDs ou objetos com `id` dos advogados da parte contrária", "items": { "type": "string" }, "example": ["uuid-1", "uuid-2"] },
+          "tipo_da_acao": { "type": "string", "description": "ID ou objeto com `id` do tipo da ação", "example": "uuid-do-tipo" },
+          "objeto_da_acao": { "type": "string", "description": "ID ou objeto com `id` do objeto da ação", "example": "uuid-do-objeto" },
+          "justica": { "type": "string", "description": "ID ou objeto com `id` da justiça", "example": "uuid-da-justica" }
         }
       },
       "attachment_download_request": {
